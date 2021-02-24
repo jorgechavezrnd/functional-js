@@ -1,1 +1,3 @@
-# Programacion Funcional En JavaScript
+# Programación Funcional en JavaScript
+
+## Contador de calorías
