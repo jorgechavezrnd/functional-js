@@ -26,6 +26,13 @@ const tag = t => {
   }
 }
 
+const tableRowTag = tag('tr')
+// const tableRow = items => tableRowTag(tableCells(items))
+const tableRow = items => compose(tableRowTag, tableCells)(items)
+
+const tableCell = tag('td')
+const tableCells = items => items.map(tableCell).join('')
+
 let description = $('#description')
 let carbs = $('#carbs')
 let calories = $('#calories')
