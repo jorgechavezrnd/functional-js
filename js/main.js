@@ -20,14 +20,12 @@ const tagAttrs = obj => (content = "") =>
 
 const tag = t => {
   if (typeof t === 'string') {
-    tagAttrs({tag: t})
-  } else {
-    tagAttrs(t)
+    return tagAttrs({tag: t})
   }
+  return tagAttrs(t)
 }
 
 const tableRowTag = tag('tr')
-// const tableRow = items => tableRowTag(tableCells(items))
 const tableRow = items => compose(tableRowTag, tableCells)(items)
 
 const tableCell = tag('td')
@@ -81,7 +79,22 @@ const add = () => {
 
   list.push(newItem)
   cleanInputs()
+  updateTotals()
   console.log(list)
+}
+
+const updateTotals = () => {
+  let calories = 0, carbs = 0, protein = 0
+
+  list.map(item => {
+    calories += item.calories
+    carbs += item.carbs
+    protein += item.protein
+  })
+
+  $('#totalCalories').text(calories)
+  $('#totalCarbs').text(carbs)
+  $('#totalProtein').text(protein)
 }
 
 const cleanInputs = () => {
